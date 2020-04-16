@@ -1,0 +1,13 @@
+pipelines:
+  default:
+    - step:
+        services:
+          - docker
+        script:
+          - export IMAGE_NAME=$USER_DOCKER/$SERVICE_NAME:1.0.0
+          - cp target/*.jar devops/
+          - cd devops/
+          - ls
+          - docker build -f Dockerfile -t $IMAGE_NAME .
+          - docker login --username $USER_DOCKER --password $PASSWORD_DOCKER
+          - docker push $IMAGE_NAME
