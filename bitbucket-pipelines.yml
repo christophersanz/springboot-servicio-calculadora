@@ -8,6 +8,6 @@ pipelines:
           - cp target/*.jar devops/
           - cd devops/
           - ls
-          - docker build -f Dockerfile -t $IMAGE_NAME .
+          - docker build -f DockerJava -t $IMAGE_NAME .
           - docker login --username $USER_DOCKER --password $PASSWORD_DOCKER
           - docker push $IMAGE_NAME
